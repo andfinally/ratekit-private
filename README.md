@@ -1,7 +1,7 @@
-# RateKit
+[![RateKit](ratekit/img/ratekit-logo-520x138.gif)](https://ratekit.com/)
 
+RateKit
 version: 1.0.0
-
 https://ratekit.com
 
 ## Introduction
@@ -10,7 +10,7 @@ RateKit is a simple PHP / jQuery plugin that adds ratings stars to an existing s
 
 ## What it does
 
-On loading RateKit transforms any input with class "rating" to a group of ratings stars. Ratings are stored in a local SQLIte database: when it loads RateKit checks the existing rating for each input and displays it.
+On loading RateKit transforms any input with class "rating" into a group of ratings stars. The plugin stores ratings in a local SQLIte database: when it loads RateKit checks the existing rating for each input and displays it.
 
 When a user clicks to leave a rating, RateKit checks their IP address. If they've tried to rate that item before within a set period, the new rating isn't registered. RateKit displays their existing rating, then switches back to the overall rating and disables the input. (You can set the period for this check by changing `THROTTLE_TIME` in `config.php`.)
  
@@ -80,3 +80,11 @@ RateKit includes some CSS styles from the Bootstrap framework. If your site alre
 # Acknowledgements
 
 The RateKit front end includes parts of Kartik Visweswaran's splendid [Bootstrap Star Rating](http://plugins.krajee.com/star-rating) jQuery plugin. Thank you Kartik!
+
+# Enjoy RateKit?
+
+Please consider a small donation to help me maintain RateKit and create other useful stuff.
+
+[![Paypal](ratekit/img/paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=andfinally%40gmail%2ecom&lc=GB&item_name=RateKit&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+![Bitcoin](ratekit/img/bitcoin.gif)
