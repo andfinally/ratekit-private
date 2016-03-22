@@ -1,0 +1,55 @@
+/* ------- RateKit custom styles -------*/
+
+.rating-loading {
+	background: none;
+}
+
+.rating-xxs {
+	font-size: 1.25em;
+}
+
+.rating-xxxs {
+	font-size: 1em;
+}
+
+.star-rating.rating-xxs .caption,
+.star-rating.rating-xxxs .caption {
+	left: 6em;
+	font-size: 90%;
+}
+
+.rating-container .rating-stars:before {
+	text-shadow: none;
+}
+
+.star-rating {
+	position: relative;
+	width: 5em;
+}
+
+.star-rating .caption {
+	position: absolute;
+	top: 50%;
+	left: 9.5em;
+	margin-top: -0.75em;
+}
+
+.label-black {
+	background: black;
+}
+
+.red .rating-container .rating-stars {
+	color: red;
+}
+
+.green .rating-container .rating-stars {
+	color: darkgreen;
+}
+
+.black .rating-container .rating-stars {
+	color: black;
+}
+
+.blue .rating-container .rating-stars {
+	color: dodgerblue;
+}

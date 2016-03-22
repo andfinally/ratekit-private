@@ -1,0 +1,30 @@
+{
+  "name": "RateKit",
+  "version": "1.0.0",
+  "description": "Add star ratings to your site",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andfinally/ratekit"
+  },
+  "keywords": [
+    "PHP",
+    "jQuery",
+    "ratings"
+  ],
+  "author": "AndFinally",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/andfinally/ratekit/issues"
+  },
+  "homepage": "https://github.com/andfinally/ratekit",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-uglify": "^1.5.3"
+  }
+}
