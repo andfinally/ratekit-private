@@ -23,7 +23,7 @@ If the user hasn't rated that item before, RateKit adds their rating to the over
 
 # Five minute setup
 
-* Download the RateKit zip file and uncompress it somewhere handy, like your usual downloads folder.
+* Download the [RateKit zip file](https://github.com/andfinally/ratekit/archive/master.zip) and uncompress it somewhere handy, like your usual downloads folder.
 * The resulting folder `ratekit-plugin` contains a folder `ratekit` and an `examples.html` file, and some other less important files.
 * To add RateKit to your site, just copy the `ratekit` folder to the root of your site. So if your site root is `mysite`, place `ratekit` in `mysite/ratekit`.
 
