@@ -1,13 +1,13 @@
 <?php
-
-/*
-
-	* Load and show rating
-	* If user tries to rate, check
-		- If he's already rated, show his rating then back to overall rating
-		- Otherwise show his rating then overall rating, and disable input
-
-*/
+/**
+ * RateKit Rating class
+ *
+ * Instantiated on a request to this page.
+ * If the request is rating.php?item=XXX, queries the database for that item and returns the overall rating
+ * If request is rating.php?item=XXX&rating=Z, checks the database to see if that IP has rated the item before
+ * within the period set in THROTTLE_TIME. If it hasn't, inserts the rating in the database and returns the
+ * new overall rating.
+ */
 
 include '../config.php';
 include 'DB.class.php';
@@ -68,6 +68,7 @@ class Rating {
 		}
 	}
 
+	// Check if this IP address has tried to rate this item before
 	private function check_ratings_from_ip() {
 		if ( THROTTLE_TIME === 0 ) {
 			return;
@@ -82,6 +83,7 @@ class Rating {
 		}
 	}
 
+	// Rough validation of input
 	private function check_vars( $new_rating = true ) {
 		$error         = false;
 		$error_message = array();
@@ -127,6 +129,7 @@ class Rating {
 		}
 	}
 
+	// Returns a rounded rating score, either to nearest integer or nearest .5
 	private function round( $rating ) {
 		if ( ALLOW_HALVES ) {
 			// Round to nearest .5
@@ -137,6 +140,7 @@ class Rating {
 		}
 	}
 
+	// Gets the overall rating for an item
 	private function get_overall_rating() {
 		$result = $this->db->select_count_rating( $this->item );
 		if ( $result[2]['count'] == 0 ) {

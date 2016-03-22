@@ -36,7 +36,7 @@ $(function () {
 	function fetchRating(el) {
 		var $input = $(el),
 			id = $input.attr('id');
-		$.getJSON('ratekit-plugin/api/rating.php',
+		$.getJSON('api/rating.php',
 			{
 				item: id
 			}
@@ -61,7 +61,7 @@ $(function () {
 	function makeEventHandler($input) {
 		return function setRating(event, value) {
 			var id = $input.attr('id');
-			$.getJSON('ratekit-plugin/api/rating.php',
+			$.getJSON('api/rating.php',
 				{
 					item  : id,
 					rating: value
