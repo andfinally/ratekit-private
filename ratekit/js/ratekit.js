@@ -8,7 +8,7 @@ $ = jQuery;
 
 $(function () {
 
-	var $input = $('input.rating');
+	var $input = $('.rating');
 	if ($input.length) {
 		$input.each(function (index, el) {
 			if ($(el).attr('data-readonly') == 'true') {
@@ -36,7 +36,7 @@ $(function () {
 	function fetchRating(el) {
 		var $input = $(el),
 			id = $input.attr('id');
-		$.getJSON('api/rating.php',
+		$.getJSON('ratekit/api/rating.php',
 			{
 				item: id
 			}
@@ -61,7 +61,7 @@ $(function () {
 	function makeEventHandler($input) {
 		return function setRating(event, value) {
 			var id = $input.attr('id');
-			$.getJSON('api/rating.php',
+			$.getJSON('ratekit/api/rating.php',
 				{
 					item  : id,
 					rating: value

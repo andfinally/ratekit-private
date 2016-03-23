@@ -66,16 +66,18 @@ If you're trying RateKit on a home Mac or Linux machine, you can
 
 Search online for more details on how to set file permissions. There are some instructions at [SimplePie](http://simplepie.org/wiki/faq/file_permissions), and there's a detailed explanation in the [WordPress Codex](https://codex.wordpress.org/Changing_File_Permissions). (Basically the data folder in RateKit needs the same permissions as the wp-content folder in WordPress.)
 
-Add inputs to your page
-=======================
+Add rating tags to your page
+============================
 
-Wherever you want to show ratings stars, add an input to your page:
+Wherever you want to show ratings stars, add an input (or any other tag, like a div) to your page:
 
-<input id="exultation" class="rating rating-loading" data-size="sm">
+<input id="exultation" class="rating" data-size="sm">
 
-* Every input must have a unique ID: that's how RateKit tells them apart.
-* Every input must have the classes "rating" and "rating-loading".
+* Every rating tag must have a unique ID: that's how RateKit tells them apart.
+* Every rating tag must have the class "rating".
 * Set the size you want the stars to have with the data-size attribute: data-size="sm" is small.
+* For read-only stars, add data-readonly="true" to the tag.
+* For whole number ratings, add data-step="1".
 
 See the examples page (https://ratekit.com/examples) for demos.
 
