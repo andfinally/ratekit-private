@@ -21,7 +21,6 @@ class Rating {
 
 	function __construct() {
 		$this->db = DB::get_instance();
-		$this->db->create_tables();
 		$this->item = filter_var( $_GET['item'], FILTER_SANITIZE_STRING );
 		if ( isset( $_GET['rating'] ) ) {
 			// User is submitting a rating

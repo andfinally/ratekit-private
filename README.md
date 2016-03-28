@@ -1,6 +1,6 @@
 [![RateKit](ratekit/img/ratekit-logo-520x138.gif)](https://ratekit.com/)
 
-RateKit
+# RateKit
 version: 1.0.0
 https://ratekit.com
 
@@ -60,6 +60,14 @@ If you're trying RateKit on a home Mac or Linux machine, you can
 * Close Terminal.
 
 Search online for more details on how to set file permissions. There are some instructions at [SimplePie](http://simplepie.org/wiki/faq/file_permissions), and there's a detailed explanation in the [WordPress Codex](https://codex.wordpress.org/Changing_File_Permissions). (Basically the `data` folder in RateKit needs the same permissions as the `wp-content` folder in WordPress.)
+
+## Go to the install page
+
+The RateKit folder includes a special file that sets up the SQLite database. You only need to use this file when setting up RateKit. In your web browser, open the page `/ratekit/api/install.php`. So if your website is `http://mysite.com`, go to `http://mysite.com/ratekit/api/install.php`. The install page will try to create the database RateKit requires to store people's ratings. 
+
+If all goes well, you'll see a success message. In that case we recommend you delete `install.php`.
+
+If there's a problem you'll see an error message. In most cases the problem will be that the server is unable to write to the data folder. Please follow the instructions above and refresh the install page in your browser to make sure it's worked. Once you've made the folder writeable the error message should disappear.
 
 ## Add rating tags to your page
 
