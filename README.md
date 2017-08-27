@@ -1,7 +1,7 @@
 [![RateKit](ratekit/img/ratekit-logo-520x138.gif)](https://ratekit.com/)
 
 # RateKit
-version: 1.0.0
+version: 1.1.0
 https://ratekit.com
 
 ## Introduction
