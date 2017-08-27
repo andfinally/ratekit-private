@@ -20,7 +20,7 @@ class Rating {
 	private $rating;
 
 	function __construct() {
-		$this->db = DB::get_instance();
+		$this->db   = DB::get_instance();
 		$this->item = filter_var( $_GET['item'], FILTER_SANITIZE_STRING );
 		if ( isset( $_GET['rating'] ) ) {
 			// User is submitting a rating
@@ -139,14 +139,16 @@ class Rating {
 		}
 	}
 
-	// Gets the overall rating for an item
-	private function get_overall_rating() {
+	// Gets the overall rating and rating count for an item
+	private function get_rating() {
 		$result = $this->db->select_count_rating( $this->item );
 		if ( $result[2]['count'] == 0 ) {
-			return 0;
+			return array( 'overall_rating' => 0, 'count' => 0 );
 		}
 
-		return $this->round( $result[2]['total'] / $result[2]['count'] );
+		$rating = $this->round( $result[2]['total'] / $result[2]['count'] );
+
+		return array( 'overall_rating' => $rating, 'count' => $result[2]['count'] );
 	}
 
 	public function return_json( $arr ) {
@@ -163,7 +165,9 @@ class Rating {
 
 	public function return_success( $arr ) {
 		$arr['status']         = 'success';
-		$arr['overall_rating'] = $this->get_overall_rating();
+		$rating_data           = $this->get_rating();
+		$arr['overall_rating'] = $rating_data['overall_rating'];
+		$arr['count']          = $rating_data['count'];
 		$this->return_json( $arr );
 		exit();
 	}

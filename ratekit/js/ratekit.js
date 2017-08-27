@@ -6,11 +6,11 @@
 
 $ = jQuery;
 
-$(function () {
+$(function() {
 
 	var $input = $('.rating');
 	if ($input.length) {
-		$input.each(function (index, el) {
+		$input.each(function(index, el) {
 			if ($(el).attr('data-readonly') == 'true') {
 				initReadOnlyRating(el);
 				return;
@@ -40,9 +40,14 @@ $(function () {
 			{
 				item: id
 			}
-		).done(function (data) {
+		).done(function(data) {
+			var rating = parseFloat(data.overall_rating);
+			var count = parseInt(data.count);
 			$input
-				.attr('value', data.overall_rating)
+				.attr({
+					'value'     : rating,
+					'data-count': count
+				})
 				.removeClass('rating-loading')
 				.addClass('rating-loading')
 				.rating({
@@ -50,30 +55,70 @@ $(function () {
 					showClear  : false,
 					animate    : false
 				});
+			if ($input.data('show-label')) {
+				showLabel($input, rating, count);
+			}
 			// Add event handler
 			var eventHandler = makeEventHandler($input);
 			$input.on('rating.change', eventHandler);
-		}).fail(function (data) {
+		}).fail(function(data) {
 			console.log(data);
+			throw new Error('Error fetching rating');
 		});
 	}
 
+	function showLabel($input, rating, count) {
+		var label = $('<div>').attr({
+			'class': 'ratekit-label'
+		});
+		var labelHTML = makeLabelHTML(rating, count);
+		label.append(labelHTML);
+		var wrapper = $('<div>').attr({
+			'class'    : 'ratekit-rating',
+			'itemprop' : 'aggregateRating',
+			'itemscope': '',
+			'itemtype' : 'http://schema.org/AggregateRating'
+		});
+		$input
+			.closest('.star-rating')
+			.wrap(wrapper)
+			.after(label);
+	}
+
+	function makeLabelHTML(rating, count) {
+		var ratingValue = $('<span/>').attr({
+			'class'   : 'ratekit-rating-value',
+			'itemprop': 'ratingValue'
+		}).text(rating);
+		var ratingCount = $('<span/>').attr({
+			'class'   : 'ratekit-rating-count',
+			'itemprop': 'ratingCount'
+		}).text(count);
+		var labelHTML = [];
+		labelHTML.push('Average rating ');
+		labelHTML.push(ratingValue);
+		labelHTML.push(', based on ');
+		labelHTML.push(ratingCount);
+		labelHTML.push(count > 1 ? ' reviews' : ' review');
+		return labelHTML;
+	}
+
 	function makeEventHandler($input) {
-		return function setRating(event, value) {
+		return function(event, value) {
 			var id = $input.attr('id');
 			$.getJSON('ratekit/api/rating.php',
 				{
 					item  : id,
 					rating: value
 				}
-			).done(function (data) {
+			).done(function(data) {
 				if (data.status === 'error') {
 					resetAndLockRating($input, data.rating);
 				} else {
 					acceptRating($input, data);
 				}
-			}).fail(function (data) {
-				console.log(data);
+			}).fail(function(data) {
+				throw new Error(data);
 			});
 		}
 	}
@@ -81,7 +126,7 @@ $(function () {
 	function resetAndLockRating($input, rating) {
 		$input.rating('clear');
 		renderCaption($input, 'You rated this ' + rating, 'label-danger').delay(1500).fadeOut(500);
-		setTimeout(function () {
+		setTimeout(function() {
 			$input.rating('reset');
 			$input.rating('refresh', {readonly: true, showCaption: false});
 			renderCaption($input, 'Overall rating ' + parseFloat($input.val())).delay(2250).fadeOut(500);
@@ -89,13 +134,23 @@ $(function () {
 	}
 
 	function acceptRating($input, data) {
-		renderCaption($input, 'Your rating ' + data.rating, 'label-success').delay(1500).fadeOut(500);
-		setTimeout(function () {
+		var rating = parseFloat(data.rating);
+		var overall_rating = parseFloat(data.overall_rating);
+		var count = parseInt(data.count);
+		renderCaption($input, 'Your rating ' + rating, 'label-success').delay(1500).fadeOut(500);
+		setTimeout(function() {
 			$input.rating('clear');
-			$input.rating('update', data.overall_rating);
+			$input.rating('update', overall_rating);
 			$input.rating('refresh', {readonly: true, showCaption: false});
-			$input.attr('value', data.overall_rating);
-			renderCaption($input, 'Overall rating ' + parseFloat(data.overall_rating)).delay(2250).fadeOut(500);
+			$input.attr('value', overall_rating);
+			renderCaption($input, 'Overall rating ' + overall_rating).delay(2250).fadeOut(500);
+			if ($input.data('show-label') === true) {
+				var wrapper = $input.closest('.ratekit-rating');
+				wrapper
+					.find('.ratekit-label')
+					.empty()
+					.append(makeLabelHTML(overall_rating, count));
+			}
 		}, 2000);
 	}
 

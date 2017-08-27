@@ -11,7 +11,7 @@ if ( DEBUG ) {
 	ini_set( 'display_errors', 1 );
 }
 
-// Used for debugging
+// Reset this to an arbitrary number for debugging
 define( 'IP_ADDRESS', $_SERVER['REMOTE_ADDR'] );
 
 // Max number of stars - don't change this.
