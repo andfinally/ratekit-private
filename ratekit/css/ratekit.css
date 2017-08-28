@@ -4,6 +4,10 @@
 	visibility: hidden;
 }
 
+.ratekit-rating {
+	margin: 5px 0;
+}
+
 .rating-xxs {
 	font-size: 1.25em;
 }
