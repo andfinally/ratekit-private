@@ -80,6 +80,7 @@ Wherever you want to show ratings stars, add an input (or any other tag, like a 
 * Set the size you want the stars to have with the data-size attribute: data-size="sm" is small.
 * For read-only stars, add `data-readonly="true"` to the tag.
 * For whole number ratings, add `data-step="1"`.
+* For structured data markup and an info label giving rating and rating count, add `data-show-label="true"`.
 
 See the [examples page](https://ratekit.com/examples) for demos.
 
