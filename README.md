@@ -40,7 +40,7 @@ to the <head> of your HTML page
 If you don't have jQuery already on your page, you can include it by adding this script tag to the bottom of your HTML page, just
 before the closing `</body>` tag.
 
-`<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>`
+`<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>`
 
 Add the RateKit JavaScript tag after jQuery:
 
